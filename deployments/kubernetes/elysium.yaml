@@ -1,0 +1,23 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: elysium
+  labels:
+    app: elysium
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elysium
+  template:
+    metadata:
+      labels:
+        app: elysium
+    spec:
+      containers:
+        - name: ka1i137/elysium:0.0.1
+          image: elysium
+          ports:
+            - name: web
+              containerPort: 8080

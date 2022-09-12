@@ -1,0 +1,30 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+-   repo: local
+    hooks:
+    - id: go-fmt
+      name: go fmt
+      files: '\.go$'
+      language: script
+      entry: githooks/run-go-fmt.sh
+    - id: go-imports
+      name: go imports
+      files: '\.go$'
+      language: script
+      entry: githooks/run-go-imports.sh
+    - id: go-mod-tidy
+      name: go mod tidy
+      files: '\.go$'
+      language: script
+      entry: githooks/run-go-mod-tidy.sh
+    - id: go-unit-tests
+      name: go unit tests
+      files: '\.go$'
+      language: script
+      entry: githooks/run-go-unit-tests.sh
+    - id: go-vet
+      name: go vet
+      files: '\.go$'
+      language: script
+      entry: githooks/run-go-vet.sh
