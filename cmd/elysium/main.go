@@ -4,10 +4,11 @@ import (
 	"os"
 
 	"github.com/elysiumyun/elysium/internal/app"
+	"github.com/elysiumyun/elysium/pkg/info"
 )
 
 func init() {
-
+	info.PrintAll()
 }
 
 func main() {

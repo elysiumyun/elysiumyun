@@ -1,18 +1,21 @@
 FROM golang:1.19 AS builder
 
-ARG GOPROXY https://goproxy.io,direct
+ENV GOPROXY https://proxy.golang.com.cn,direct
 
 WORKDIR /usr/src/
 
 COPY . .
 
-RUN go mod tidy
-RUN make build
+RUN make tidy \
+ && make build
 
 # final runner image
 FROM alpine:latest as runner
 
 LABEL maintaner="Mardan M"
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories \
+ && apk add tzdata
 
 WORKDIR /usr/bin
 
