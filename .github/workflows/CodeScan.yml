@@ -27,6 +27,7 @@ jobs:
 
     - name: build release
       run: |
+        go mod tidy
         make build
 
     - name: Perform CodeQL Analysis
