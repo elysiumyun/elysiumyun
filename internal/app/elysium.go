@@ -15,7 +15,10 @@ func elysium() error {
 
 	// new server & init router
 	engine := gin.New()
-	engine.SetTrustedProxies(nil)
+	err = engine.SetTrustedProxies(nil)
+	if err != nil {
+		return nil
+	}
 
 	router.SetRouter(engine)
 
