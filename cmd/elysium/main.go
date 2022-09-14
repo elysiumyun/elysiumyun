@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"os"
 
 	"github.com/elysiumyun/elysium/internal/app"
@@ -8,16 +9,17 @@ import (
 )
 
 func init() {
+	if os.Getenv("ElysiumMode") == "debug" {
+		log.SetFlags(log.Lshortfile | log.LstdFlags)
+	}
 	info.PrintAll()
 }
 
 func main() {
-	var err error
-	var code int
 	// bootstrap
-	code, err = app.App.Run()
+	code, err := app.App.Run()
 	defer os.Exit(code)
 	if err != nil {
-		panic(err)
+		log.Println(err)
 	}
 }

@@ -48,3 +48,11 @@ make
 
 ## TimeZone Support
 待定: [elysiumyun/timezone](https://github.com/elysiumyun/timezone.git)
+
+## 用户接口测试
+### 注册
+```
+(base) mardan@Mardans-Mac-mini exec: 7/1527 current: 0 status: [ ok ]
+ttys003 ~ %⚑ <<< curl -X POST -H "Content-Type: application/json" -d '{"username":"my_login","password":"my_password"}' http://localhost:8080/api/v1/user/register
+{"username":"my_login","password":"my_password"}
+```

@@ -6,6 +6,11 @@ all: build
 build:    ## Build with native env.
 	@./scripts/build.sh ${PROJECT}
 
+.PHONY: test
+test:     ## Dev Preview Test.
+	@./scripts/build.sh ${PROJECT}
+	@export ElysiumMode="debug" && ./bin/elysium
+
 .PHONY: help
 help:     ## Show this help.
 	@echo "Makefile Help Menu >>>\n"

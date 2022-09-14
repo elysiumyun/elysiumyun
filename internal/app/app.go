@@ -36,7 +36,6 @@ func (app *app) Run() (int, error) {
 		err = elysium()
 	}
 	if err != nil {
-		log.Printf("%v\n", err)
 		return app.failure, err
 	}
 	return app.success, nil
