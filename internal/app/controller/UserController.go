@@ -2,6 +2,7 @@ package controller
 
 import (
 	"github.com/elysiumyun/elysium/internal/app/model"
+	"github.com/elysiumyun/elysium/internal/pkg/datasource"
 	"github.com/elysiumyun/elysium/internal/pkg/response"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
@@ -40,6 +41,14 @@ func UserRegister(ctx *gin.Context) {
 	// user register record save
 	var newUser model.User = model.User{
 		UserData: newUserData,
+	}
+
+	db, dbCtx := datasource.Get.Mysql.GetClient()
+	tx := db.WithContext(dbCtx)
+
+	if err := tx.Create(&newUser).Error; err != nil {
+		response.Abnormal(ctx, nil, "user register failed")
+		return
 	}
 
 	response.Success(ctx, gin.H{
