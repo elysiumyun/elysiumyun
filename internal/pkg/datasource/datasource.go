@@ -6,6 +6,8 @@ func (ds *datasource) InitDataSource() {
 
 }
 
-func Get() *datasource {
+func getDatasource() *datasource {
 	return &datasource{}
 }
+
+var Get *datasource = getDatasource()

@@ -1,9 +1,8 @@
 package middleware
 
 import (
-	"net/http"
-
 	"github.com/elysiumyun/elysium/internal/app/model"
+	"github.com/elysiumyun/elysium/internal/pkg/response"
 	"github.com/gin-gonic/gin"
 )
 
@@ -12,7 +11,7 @@ func Entry() gin.HandlerFunc {
 		var userData model.UserData = model.UserData{}
 
 		if err := ctx.ShouldBind(&userData); err != nil {
-			ctx.JSON(http.StatusInternalServerError, "prams bind failed!")
+			response.Fail(ctx, gin.H{"err": err}, "Prams bind failed!")
 			ctx.Abort()
 			return
 		}

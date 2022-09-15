@@ -7,8 +7,8 @@ type UserMeta struct {
 }
 
 type UserData struct {
-	UserName string `json:"username"`
-	Password string `json:"password"`
+	UserName string `json:"username" xml:"username"`
+	Password string `json:"password" xml:"password"`
 }
 
 type User struct {

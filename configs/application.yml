@@ -1,0 +1,14 @@
+# App
+app:
+  addr: 0.0.0.0
+  port: 8080
+  timezone: Asia/Shanghai
+
+# Mysql
+mysql:
+  addr: 192.168.64.2
+  port: 3306
+  user: root
+  passwd: 12345678
+  database: elysium
+  charset: utf8mb4

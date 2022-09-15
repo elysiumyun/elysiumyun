@@ -45,7 +45,7 @@ func (app *app) Run() (int, error) {
 func (app *app) flags(argc int, argv []string) error {
 	var err error
 	switch argv[0] {
-	case "-c", "config", "--config":
+	case "-c", "--config", "config":
 		log.Println("^-^")
 	case "-h", "--help", "help":
 		usage.Usage()

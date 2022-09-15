@@ -1,40 +1,26 @@
 package config
 
-import (
-	"os"
-	"sync"
-
-	"github.com/elysiumyun/elysium/pkg/utils"
-)
-
-type cfg struct {
-	mutex   sync.RWMutex
-	options Options
+type config struct {
+	Filenme string
+	Error   error
 }
 
-func (cfg *cfg) Get() *Options {
-	cfg.mutex.TryRLock()
-	defer cfg.mutex.RUnlock()
-	return &cfg.options
+func (c *config) Init() {
+	options, err := configParser(c.Filenme)
+	if err != nil {
+		c.Error = err
+		return
+	}
+	if (options != Options{}) {
+		Cfg.Set(&options)
+	}
 }
 
-func (cfg *cfg) Set(newOptions *Options) {
-	cfg.mutex.TryLock()
-	defer cfg.mutex.Unlock()
-	cfg.options = *newOptions
-}
+var Configure = getConfig()
 
-func Cfg() *cfg {
-	addr := os.Getenv("")
-	port := os.Getenv("")
-	timezone := os.Getenv("")
-	return &cfg{
-		options: Options{
-			App: App{
-				Addr:     utils.TCO(addr == "", "localhost", addr).(string),
-				Port:     utils.TCO(port == "", "8080", port).(string),
-				TimeZone: utils.TCO(timezone == "", "Asia/Shanghai", timezone).(string),
-			},
-		},
+func getConfig() *config {
+	return &config{
+		Filenme: "configs/application.yml",
+		Error:   nil,
 	}
 }

@@ -13,13 +13,20 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+func init() {
+	config.Configure.Init()
+	err := config.Configure.Error
+	if err != nil {
+		panic(err)
+	}
+}
+
 func elysium() error {
 	var err error
-	var options config.Options = *config.Cfg().Get()
+	var options config.Options = *config.Cfg.Get()
 
 	// connect data source: like database
-	ds := datasource.Get()
-	ds.InitDataSource()
+	datasource.Get.InitDataSource()
 
 	// new server & init router
 	engine := gin.New()

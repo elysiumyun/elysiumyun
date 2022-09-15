@@ -12,7 +12,7 @@ func init() {
 	if os.Getenv("ElysiumMode") == "debug" {
 		log.SetFlags(log.Lshortfile | log.LstdFlags)
 	}
-	info.PrintAll()
+	info.Version.Print()
 }
 
 func main() {

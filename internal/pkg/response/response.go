@@ -1,12 +1,14 @@
 package response
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
 func Response(ctx *gin.Context, httpStatus int, code int, res interface{}, msg string, status string) {
+	log.Printf("status: %v --> %v\n", status, msg)
 	ctx.JSON(
 		httpStatus,
 		gin.H{
