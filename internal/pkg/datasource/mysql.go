@@ -44,5 +44,8 @@ func (m *mysqlClient) openMysql() {
 
 	m.client = db.Set("gorm:table_options", "ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci")
 
-	db.AutoMigrate(&model.User{})
+	err = db.AutoMigrate(&model.User{})
+	if err != nil {
+		panic(err)
+	}
 }
